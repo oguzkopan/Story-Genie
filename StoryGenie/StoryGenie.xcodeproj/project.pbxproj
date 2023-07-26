@@ -14,6 +14,9 @@
 		60D7EBF12A70EBD200936BEC /* StoryGenieTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D7EBF02A70EBD200936BEC /* StoryGenieTests.swift */; };
 		60D7EBFB2A70EBD200936BEC /* StoryGenieUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D7EBFA2A70EBD200936BEC /* StoryGenieUITests.swift */; };
 		60D7EBFD2A70EBD200936BEC /* StoryGenieUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D7EBFC2A70EBD200936BEC /* StoryGenieUITestsLaunchTests.swift */; };
+		60D7EC0A2A710F4000936BEC /* StoryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D7EC092A710F4000936BEC /* StoryData.swift */; };
+		60D7EC102A712E7D00936BEC /* TheAdventureBegins.txt in Resources */ = {isa = PBXBuildFile; fileRef = 60D7EC0F2A711D0200936BEC /* TheAdventureBegins.txt */; };
+		60D7EC122A71348100936BEC /* MobyDick.txt in Resources */ = {isa = PBXBuildFile; fileRef = 60D7EC112A71348100936BEC /* MobyDick.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +47,9 @@
 		60D7EBF62A70EBD200936BEC /* StoryGenieUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StoryGenieUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		60D7EBFA2A70EBD200936BEC /* StoryGenieUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryGenieUITests.swift; sourceTree = "<group>"; };
 		60D7EBFC2A70EBD200936BEC /* StoryGenieUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryGenieUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		60D7EC092A710F4000936BEC /* StoryData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryData.swift; sourceTree = "<group>"; };
+		60D7EC0F2A711D0200936BEC /* TheAdventureBegins.txt */ = {isa = PBXFileReference; explicitFileType = text; fileEncoding = 4; name = TheAdventureBegins.txt; path = StoryGenie/TheAdventureBegins.txt; sourceTree = SOURCE_ROOT; usesTabs = 0; };
+		60D7EC112A71348100936BEC /* MobyDick.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = MobyDick.txt; path = StoryGenie/MobyDick.txt; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,8 +100,11 @@
 		60D7EBDE2A70EBD000936BEC /* StoryGenie */ = {
 			isa = PBXGroup;
 			children = (
+				60D7EC112A71348100936BEC /* MobyDick.txt */,
+				60D7EC0F2A711D0200936BEC /* TheAdventureBegins.txt */,
 				60D7EBDF2A70EBD000936BEC /* StoryGenieApp.swift */,
 				60D7EBE12A70EBD000936BEC /* ContentView.swift */,
+				60D7EC092A710F4000936BEC /* StoryData.swift */,
 				60D7EBE32A70EBD100936BEC /* Assets.xcassets */,
 				60D7EBE52A70EBD100936BEC /* Preview Content */,
 			);
@@ -231,6 +240,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				60D7EC122A71348100936BEC /* MobyDick.txt in Resources */,
+				60D7EC102A712E7D00936BEC /* TheAdventureBegins.txt in Resources */,
 				60D7EBE72A70EBD100936BEC /* Preview Assets.xcassets in Resources */,
 				60D7EBE42A70EBD100936BEC /* Assets.xcassets in Resources */,
 			);
@@ -259,6 +270,7 @@
 			files = (
 				60D7EBE22A70EBD000936BEC /* ContentView.swift in Sources */,
 				60D7EBE02A70EBD000936BEC /* StoryGenieApp.swift in Sources */,
+				60D7EC0A2A710F4000936BEC /* StoryData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
