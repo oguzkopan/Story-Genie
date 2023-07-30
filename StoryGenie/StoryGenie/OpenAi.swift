@@ -73,10 +73,44 @@ struct OpenAIChatChoice: Decodable {
 }
 
 
-struct Message: Decodable {
-    let id: UUID
-    let role: SenderRole
+class GeneratedStory: ObservableObject, Identifiable, Codable {
+    let id = UUID()
     let content: String
-    let createAt: Date
+    let createdAt: Date
+
+    init(content: String, createdAt: Date) {
+        self.content = content
+        self.createdAt = createdAt
+    }
+
+    // Implement the required initializer for Decodable
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        content = try container.decode(String.self, forKey: .content)
+        createdAt = try container.decode(Date.self, forKey: .createdAt)
+    }
+
+    // Implement the required method for Encodable
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(content, forKey: .content)
+        try container.encode(createdAt, forKey: .createdAt)
+    }
+
+    // Add the CodingKeys enumeration to map the property names during encoding/decoding
+    enum CodingKeys: String, CodingKey {
+        case content
+        case createdAt
+    }
+
+    func toGeneratedStoryContent() -> StoryContent {
+        return StoryContent(title: "Favorite Story", content: content, createdAt: createdAt)
+    }
 }
 
+
+extension GeneratedStory {
+    func toStoryContent() -> StoryContent {
+        return StoryContent(title: "Favorite Story", content: content, createdAt: createdAt)
+    }
+}
