@@ -1,5 +1,7 @@
 import SwiftUI
 import AVFoundation
+import Alamofire
+
 
 class SpeechManager: NSObject, ObservableObject, AVSpeechSynthesizerDelegate {
     private let speechSynthesizer = AVSpeechSynthesizer()
@@ -133,38 +135,55 @@ struct ContentView: View {
 struct CreateStoryView: View {
     @State private var storyPrompt = ""
     @State private var generatedStory = ""
-    
+
     var body: some View {
-        VStack(alignment: .leading, spacing: 16) {
-            Text("Enter your story prompt:")
-                .font(.headline)
-            
-            TextField("Once upon a time...", text: $storyPrompt)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-            
-            Button(action: generateStory) {
-                Text("Generate Story")
-            }
-            
-            if !generatedStory.isEmpty {
-                Text("Generated Story:")
+        ScrollView { // Wrap the content in ScrollView
+            VStack(alignment: .leading, spacing: 16) {
+                Text("Can you generate a children story about")
                     .font(.headline)
-                
-                Text(generatedStory)
-                    .font(.body)
-                    .multilineTextAlignment(.leading)
+
+                TextField("Enter your story prompt..", text: $storyPrompt)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+
+                Button(action: generateStory) {
+                    Text("Generate Story")
+                }
+
+                if !generatedStory.isEmpty {
+                    Text("Generated Story:")
+                        .font(.headline)
+
+                    Text(generatedStory)
+                        .font(.body)
+                        .multilineTextAlignment(.leading)
+                }
+
+                Spacer()
             }
-            
-            Spacer()
+            .padding()
+            .navigationTitle("Create Story")
         }
-        .padding()
-        .navigationTitle("Create Story")
     }
     
     private func generateStory() {
-        // Call the generative language model API with 'storyPrompt' as input
-        // and store the generated story in 'generatedStory' variable
-        // Replace this section with your actual API integration code
-        generatedStory = "Once upon a time, \(storyPrompt)..."
+        // Create an instance of the OpenAIService class
+        let openAIService = OpenAIService()
+        
+        // Create an array of messages containing the user prompt
+        let messages = [Message(id: UUID(), role: .user, content: storyPrompt, createAt: Date())]
+
+        // Call the sendMessage method from the OpenAIService class to get the generated story
+        openAIService.sendMessage(messages: messages) { result in
+            switch result {
+            case .success(let response):
+                if let choice = response.choices?.first {
+                    generatedStory = choice.message.content
+                } else {
+                    generatedStory = "No story generated."
+                }
+            case .failure(let error):
+                generatedStory = "Error generating story: \(error.localizedDescription)"
+            }
+        }
     }
 }
